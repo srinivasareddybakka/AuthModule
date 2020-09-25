@@ -5,7 +5,7 @@ import com.simpleorder.management.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UserService {
@@ -16,8 +16,14 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public List<User> getUser(Long id) {
-        return userRepository.findAll();
+    public Optional<User> getUser(Long id) {
+
+        return userRepository.findById(id);
+
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
     }
 
 

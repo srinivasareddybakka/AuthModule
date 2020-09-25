@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -27,8 +27,15 @@ public class UserController {
     }
 
     @GetMapping(value = "/getuser/{id}")
-    public List<User> getUser(@PathVariable Long id ) {
-        LOGGER.info("Getting User Details{}",id);
+    public Optional<User> getUser(@PathVariable("id") Long id) {
+        LOGGER.info("Getting User Details{}", id);
         return userServiceImpl.getUser(id);
+    }
+
+    @DeleteMapping(value = "/deleteuser/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id) {
+        LOGGER.info("Deleting user details {}", id);
+        userServiceImpl.deleteUser(id);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 }
