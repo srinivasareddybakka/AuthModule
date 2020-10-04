@@ -1,5 +1,7 @@
 package com.simpleorder.management.controller;
 
+import com.simpleorder.management.model.Address;
+import com.simpleorder.management.model.Order;
 import com.simpleorder.management.model.User;
 import com.simpleorder.management.service.UserService;
 import org.slf4j.Logger;
@@ -22,6 +24,10 @@ public class UserController {
     @PostMapping(value = "/create")
     public ResponseEntity createUser(@RequestBody User user) {
         LOGGER.info("Create new User {}", user);
+        Order order = new Order("shampoos");
+        Address address = new Address("Banglore", 560100);
+        user.getOrderList().add(order);
+        user.setAddress(address);
         userServiceImpl.createUser(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
