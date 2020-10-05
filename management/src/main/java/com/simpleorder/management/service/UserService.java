@@ -12,6 +12,11 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+
+    @Autowired
+    UserLoginRespository userLoginRespository;
+
+
     public User createUser(User user) {
         return userRepository.save(user);
     }
@@ -26,5 +31,12 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public User userSignUp(User user) {
+        return userRepository.save(user);
+    }
+
+    public User findByUserName(String userName) {
+        return userLoginRespository.findByUserName(userName);
+    }
 
 }

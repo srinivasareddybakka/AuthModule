@@ -29,9 +29,8 @@ public class OrderService {
 
         Optional<User> user = userRepository.findById((long) 1);
         user.get().getOrderList().add(order);
-
         LOGGER.info("Order details {}", order);
-         userRepository.save(user.get());
+        userRepository.save(user.get());
     }
 
 }
