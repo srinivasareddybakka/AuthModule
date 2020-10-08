@@ -1,7 +1,11 @@
 package com.simpleorder.management.service;
 
+import com.simpleorder.management.controller.UserController;
 import com.simpleorder.management.model.User;
 import com.simpleorder.management.repository.UserRepository;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +13,8 @@ import java.util.Optional;
 
 @Component
 public class UserService {
+
+    private static final Logger LOGGER=  LoggerFactory.getLogger(UserService.class);
     @Autowired
     UserRepository userRepository;
 
@@ -39,4 +45,10 @@ public class UserService {
         return userLoginRespository.findByUserName(userName);
     }
 
+    public User loginCheck(User user) {
+        User resultUser=userLoginRespository.findByUserName(user.getUserName());
+        LOGGER.info("User data from db {}",resultUser);
+        return resultUser;
+
+    }
 }

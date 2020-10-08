@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/auth")
 public class AuthController {
@@ -29,6 +30,11 @@ public class AuthController {
     public User getUserDetails(@RequestBody User user) {
         LOGGER.info("AuthController signup {}", user);
         return userService.findByUserName(user.getUserName());
+    }
+@PostMapping(value="/loginCheck")
+    public User loginCheck(@RequestBody User user){
+        LOGGER.info("user data {}",user);
+        return userService.loginCheck(user);
     }
 
 

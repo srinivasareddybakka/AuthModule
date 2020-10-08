@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
@@ -34,7 +35,7 @@ public class UserController {
 
     @GetMapping(value = "/getuser/{id}")
     public Optional<User> getUser(@PathVariable("id") Long id) {
-        LOGGER.info("Getting User Details{}", id);
+        LOGGER.info("Getting User: Details {}",id);
         return userServiceImpl.getUser(id);
     }
 
