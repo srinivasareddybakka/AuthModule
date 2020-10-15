@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController()
 @RequestMapping(value = "/orders")
@@ -26,6 +28,12 @@ public class OrderController {
         LOGGER.info("Order Details {}", order);
         orderService.createOrder(order);
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @PostMapping(value = "/getAllOrdersWithIds")
+    public List<Order> getOrderBasedOnIds(@RequestBody List<Integer> ids){
+        System.out.println("ids "+ids);
+        return orderService.getOrderBasedOnIds(ids);
     }
 
 

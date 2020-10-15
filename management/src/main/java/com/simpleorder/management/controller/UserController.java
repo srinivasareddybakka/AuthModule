@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -44,5 +45,10 @@ public class UserController {
         LOGGER.info("Deleting user details {}", id);
         userServiceImpl.deleteUser(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(value = "/sample")
+    public List<User> getUsers(){
+        return userServiceImpl.getUsersBasedOnIds();
     }
 }

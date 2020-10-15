@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -35,6 +36,12 @@ public class OrderService {
         }
 
     }
+
+    public List<Order> getOrderBasedOnIds(List<Integer> ids){
+        return  orderRepository.findByIdIn(ids);
+    }
+
+
 
 }
 

@@ -8,7 +8,16 @@ import java.sql.Blob;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private String product_name;
     private String product_desc;
     private Double price;

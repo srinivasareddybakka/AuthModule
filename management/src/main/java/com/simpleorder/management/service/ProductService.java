@@ -1,5 +1,6 @@
 package com.simpleorder.management.service;
 
+import com.simpleorder.management.model.Order;
 import com.simpleorder.management.model.Product;
 import com.simpleorder.management.repository.ProductRepository;
 import org.slf4j.Logger;
@@ -23,5 +24,9 @@ public class ProductService {
     }
     public List<Product> getAllProducts(){
         return productRepository.findAll();
+    }
+
+    public List<Product> getProductsBasedOnIds(List<Integer> ids){
+        return  productRepository.findByIdIn(ids);
     }
 }
