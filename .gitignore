@@ -1,0 +1,9 @@
+
+*.xml
+management/target/test-classes/com/simpleorder/management/ManagementApplicationTests.class
+*.patch
+management/.idea/sonarlint/issuestore/1/c/1cf8eec27309befb3c901e956d1fb1244b4bc9d0
+*.lst
+*.idea
+target
+management
