@@ -20,7 +20,7 @@ public class UserService {
 
 
     @Autowired
-    UserLoginRespository userLoginRespository;
+    UserLoginRepository userLoginRepository;
 
 
     public User createUser(User user) {
@@ -42,11 +42,11 @@ public class UserService {
     }
 
     public User findByUserName(String userName) {
-        return userLoginRespository.findByUserName(userName);
+        return userLoginRepository.findByUserName(userName);
     }
 
     public User loginCheck(User user) {
-        User resultUser=userLoginRespository.findByUserName(user.getUserName());
+        User resultUser=userLoginRepository.findByUserName(user.getUserName());
         LOGGER.info("User data from db {}",resultUser);
         return resultUser;
 

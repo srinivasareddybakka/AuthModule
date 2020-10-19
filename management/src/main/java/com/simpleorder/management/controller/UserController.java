@@ -47,8 +47,5 @@ public class UserController {
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping(value = "/sample")
-    public List<User> getUsers(){
-        return userServiceImpl.getUsersBasedOnIds();
-    }
+   
 }
