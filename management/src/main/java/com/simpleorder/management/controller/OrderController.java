@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @CrossOrigin
@@ -34,6 +37,15 @@ public class OrderController {
     public List<Order> getOrderBasedOnIds(@RequestBody List<Integer> ids){
         System.out.println("ids "+ids);
         return orderService.getOrderBasedOnIds(ids);
+    }
+
+    @PostMapping(value = "/insertOrders")
+    public void insertOrders(@RequestBody String obj){
+        System.out.println("in the controller");
+      //  List t_arraylist = Arrays.asList(obj);
+      //  System.out.println("t_arraylist " +t_arraylist);
+
+        orderService.insertOrders(obj);
     }
 
 
