@@ -30,9 +30,4 @@ public class ProductController {
        return productService.getAllProducts();
     }
 
-    @PostMapping(value = "/getAllOrdersWithIds")
-    public List<Product> getOrderBasedOnIds(@RequestBody List<Integer> ids){
-        System.out.println("product ids "+ids);
-        return productService.getProductsBasedOnIds(ids);
-    }
 }

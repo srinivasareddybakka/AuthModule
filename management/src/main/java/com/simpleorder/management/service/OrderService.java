@@ -5,6 +5,7 @@ import com.simpleorder.management.model.Order;
 import com.simpleorder.management.model.Product;
 import com.simpleorder.management.model.User;
 import com.simpleorder.management.repository.OrderRepository;
+import com.simpleorder.management.repository.ProductRepository;
 import com.simpleorder.management.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,8 @@ public class OrderService {
 
     @Autowired
     UserRepository userRepository;
-
+    @Autowired
+    ProductRepository productRepository;
 
     public void createOrder(Order order) {
 
@@ -49,16 +51,18 @@ public class OrderService {
         System.out.println("user "+user.get());
         if (user.isPresent()) {
 
-            List<Order> orders=new ArrayList<Order>();
+            Order o=new Order();
+            List<Product> products=new ArrayList<Product>();
+
             obj.forEach(item->{
                 System.out.println("in the iterate "+item);
-                Product p=new Product((Integer) item);
-                Order o=new Order();
-                o.setProduct(p);
-                orders.add(o);
+//                Product p=new Product((Integer) item);
+                Optional<Product> p=productRepository.findById((Integer) item);
+                products.add(p.get());
             });
-            System.out.println("orders "+orders);
-            user.get().getOrderList().addAll(orders);
+            o.setProduct(products);
+
+            user.get().getOrderList().add(o);
             System.out.println(" user after orders are added "+user);
             userRepository.save(user.get());
         }

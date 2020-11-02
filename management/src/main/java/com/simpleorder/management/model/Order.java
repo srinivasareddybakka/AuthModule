@@ -2,6 +2,7 @@ package com.simpleorder.management.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
@@ -17,21 +18,23 @@ public class Order implements Serializable {
 
     private double product_Price;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "product_id",referencedColumnName = "id")
-    private  Product Product;
 
-    public Product getProduct() {
-        return Product;
-    }
 
-    public void setProduct(Product product) {
-        Product = product;
-    }
+      @OneToMany(fetch = FetchType.LAZY)
+   @JoinColumn(name = "product_id",referencedColumnName = "id")
+    private List<Product> Product;
+
+
 
     public Order() {
     }
+    public List<com.simpleorder.management.model.Product> getProduct() {
+        return Product;
+    }
 
+    public void setProduct(List<com.simpleorder.management.model.Product> product) {
+        Product = product;
+    }
 
 
     public int getId() {

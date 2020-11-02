@@ -27,8 +27,6 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public List<Product> getProductsBasedOnIds(List<Integer> ids){
-        return  productRepository.findByIdIn(ids);
-    }
+
 
 }
