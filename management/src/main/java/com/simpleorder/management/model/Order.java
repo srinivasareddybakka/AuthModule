@@ -13,21 +13,26 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
-    private String product_id;
-
-
     private String product_Name;
 
-
     private double product_Price;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "product_id",referencedColumnName = "id")
+    private  Product Product;
+
+    public Product getProduct() {
+        return Product;
+    }
+
+    public void setProduct(Product product) {
+        Product = product;
+    }
 
     public Order() {
     }
 
-    public Order(String product_Name) {
-        this.product_Name = product_Name;
-    }
+
 
     public int getId() {
         return id;
@@ -37,13 +42,6 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public String getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(String product_id) {
-        this.product_id = product_id;
-    }
 
     public String getProduct_Name() {
         return product_Name;

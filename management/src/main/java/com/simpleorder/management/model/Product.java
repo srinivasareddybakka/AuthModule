@@ -1,11 +1,11 @@
 package com.simpleorder.management.model;
 
 import javax.persistence.*;
-import java.sql.Blob;
+import java.io.Serializable;
 
 @Entity
 @Table(name="products")
-public class Product {
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -24,6 +24,11 @@ public class Product {
     private String product_image;
 
     public Product(){}
+
+    public Product(int id) {
+        this.id = id;
+    }
+
     public Product(String product_name, String product_desc, Double price, String product_image) {
         this.product_name = product_name;
         this.product_desc = product_desc;

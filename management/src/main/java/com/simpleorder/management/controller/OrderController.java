@@ -40,7 +40,7 @@ public class OrderController {
     }
 
     @PostMapping(value = "/insertOrders")
-    public void insertOrders(@RequestBody String obj){
+    public void insertOrders(@RequestBody List<Integer> obj){
         System.out.println("in the controller");
       //  List t_arraylist = Arrays.asList(obj);
       //  System.out.println("t_arraylist " +t_arraylist);

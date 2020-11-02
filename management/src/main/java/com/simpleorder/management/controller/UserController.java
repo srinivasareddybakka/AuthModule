@@ -3,6 +3,7 @@ package com.simpleorder.management.controller;
 import com.simpleorder.management.model.Address;
 import com.simpleorder.management.model.Order;
 import com.simpleorder.management.model.User;
+import com.simpleorder.management.repository.UserRepository;
 import com.simpleorder.management.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,11 +23,13 @@ public class UserController {
 
     @Autowired
     UserService userServiceImpl;
+    @Autowired
+    UserRepository userRepository;
 
     @PostMapping(value = "/create")
     public ResponseEntity createUser(@RequestBody User user) {
         LOGGER.info("Create new User {}", user);
-        Order order = new Order("shampoos");
+        Order order = new Order();
         Address address = new Address("Banglore", 560100);
         user.getOrderList().add(order);
         user.setAddress(address);
@@ -46,6 +49,8 @@ public class UserController {
         userServiceImpl.deleteUser(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
+
+
 
    
 }

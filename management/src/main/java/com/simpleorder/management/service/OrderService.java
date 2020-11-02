@@ -2,6 +2,7 @@
 package com.simpleorder.management.service;
 
 import com.simpleorder.management.model.Order;
+import com.simpleorder.management.model.Product;
 import com.simpleorder.management.model.User;
 import com.simpleorder.management.repository.OrderRepository;
 import com.simpleorder.management.repository.UserRepository;
@@ -42,17 +43,19 @@ public class OrderService {
         return orderRepository.findByIdIn(ids);
     }
 
-    public void insertOrders(String obj) {
+    public void insertOrders(List obj) {
         System.out.println("obj " + obj);
         Optional<User> user = userRepository.findById((long) 34);
-        System.out.println("user "+user);
+        System.out.println("user "+user.get());
         if (user.isPresent()) {
 
             List<Order> orders=new ArrayList<Order>();
-            obj.(item->{
+            obj.forEach(item->{
                 System.out.println("in the iterate "+item);
-                //orders.add(new Order(item));
-                return item;
+                Product p=new Product((Integer) item);
+                Order o=new Order();
+                o.setProduct(p);
+                orders.add(o);
             });
             System.out.println("orders "+orders);
             user.get().getOrderList().addAll(orders);
