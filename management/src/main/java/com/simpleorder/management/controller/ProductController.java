@@ -1,6 +1,5 @@
 package com.simpleorder.management.controller;
 
-import com.simpleorder.management.model.Order;
 import com.simpleorder.management.model.Product;
 import com.simpleorder.management.service.ProductService;
 import org.slf4j.Logger;
@@ -29,5 +28,9 @@ public class ProductController {
         LOGGER.info("Getting prodcuts");
        return productService.getAllProducts();
     }
-
+    @PostMapping(value = "/getAllOrdersWithIds")
+    public List<Product> getOrderBasedOnIds(@RequestBody List<Integer> ids){
+        System.out.println("ids "+ids);
+        return productService.getOrderBasedOnIds(ids);
+    }
 }
