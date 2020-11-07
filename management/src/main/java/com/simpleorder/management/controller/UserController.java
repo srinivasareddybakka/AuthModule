@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
@@ -38,9 +38,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/getuser/{id}")
-    public Optional<User> getUser(@PathVariable("id") Long id) {
+    public User getUser(@PathVariable("id") Long id) {
         LOGGER.info("Getting User: Details {}",id);
-        return userServiceImpl.getUser(id);
+        return userServiceImpl.getUser(id).get();
     }
 
     @DeleteMapping(value = "/deleteuser/{id}")
