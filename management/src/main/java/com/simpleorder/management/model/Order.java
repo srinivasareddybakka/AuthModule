@@ -14,20 +14,19 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String product_Name;
+    private String order_status;
 
-    private double product_Price;
+    private double total_amount;
 
 
-
-      @OneToMany(fetch = FetchType.LAZY)
-   @JoinColumn(name = "product_id",referencedColumnName = "id")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private List<Product> Product;
-
 
 
     public Order() {
     }
+
     public List<com.simpleorder.management.model.Product> getProduct() {
         return Product;
     }
@@ -45,21 +44,19 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-
-    public String getProduct_Name() {
-        return product_Name;
+    public String getOrder_status() {
+        return order_status;
     }
 
-    public void setProduct_Name(String product_Name) {
-        this.product_Name = product_Name;
+    public void setOrder_status(String order_status) {
+        this.order_status = order_status;
     }
 
-    public double getProduct_Price() {
-        return product_Price;
+    public double getTotal_amount() {
+        return total_amount;
     }
 
-    public void setProduct_Price(double product_Price) {
-        this.product_Price = product_Price;
+    public void setTotal_amount(double total_amount) {
+        this.total_amount = total_amount;
     }
-
 }

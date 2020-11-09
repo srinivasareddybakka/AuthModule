@@ -47,23 +47,27 @@ public class OrderService {
 
     public void insertOrders(List obj) {
         System.out.println("obj " + obj);
-        Optional<User> user = userRepository.findById((long) 34);
-        System.out.println("user "+user.get());
+        Optional<User> user = userRepository.findById((long) 1);
+        System.out.println("user " + user.get());
         if (user.isPresent()) {
 
-            Order o=new Order();
-            List<Product> products=new ArrayList<Product>();
+            Order order = new Order();
+            List<Product> products = new ArrayList<Product>();
 
-            obj.forEach(item->{
-                System.out.println("in the iterate "+item);
+            obj.forEach(item -> {
+                System.out.println("in the iterate " + item);
 //                Product p=new Product((Integer) item);
-                Optional<Product> p=productRepository.findById((Integer) item);
+                Optional<Product> p = productRepository.findById((Integer) item);
                 products.add(p.get());
             });
-            o.setProduct(products);
+            double totalAmount = products.stream().mapToDouble(Product::getPrice).sum();
 
-            user.get().getOrderList().add(o);
-            System.out.println(" user after orders are added "+user);
+            order.setProduct(products);
+            order.setOrder_status("SUCCESS");
+            order.setTotal_amount(totalAmount);
+
+            user.get().getOrderList().add(order);
+            System.out.println(" user after orders are added " + user);
             userRepository.save(user.get());
         }
 
