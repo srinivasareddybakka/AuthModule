@@ -19,7 +19,7 @@ public class Order implements Serializable {
     private double total_amount;
 
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private List<Product> Product;
 
